@@ -1,0 +1,22 @@
+{
+  "name": "enb-typescript",
+  "version": "0.0.1",
+  "description": "enb typescript tech",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "enb",
+    "typescript"
+  ],
+  "author": {
+    "name": "Nikita Rudenko",
+    "email": "ii.nrudenko@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:NikitaRudenko/enb-typescript.git"
+  },
+  "license": "MIT"
+}
