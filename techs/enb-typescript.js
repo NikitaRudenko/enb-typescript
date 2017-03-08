@@ -1,21 +1,20 @@
-var ts = require('typescript'),
-	_ = require('lodash'),
-	vow = require('vow'),
-	vowFs = require('vow-fs'),
-	Concat = require('concat-with-sourcemaps'),
-	defaultCompilerOptions = {
-		module: ts.ModuleKind.ES2015,
-		allowJs: true
-	};
+var ts = require('typescript');
+var _ = require('lodash');
+var vow = require('vow');
+var vowFs = require('vow-fs');
+var buildFlow = require('enb').buildFlow || require('enb/lib/build-flow');
+var defaultCompilerOptions = {
+	module: ts.ModuleKind.ES2015,
+	allowJs: true
+};
 
-module.exports = require('enb/lib/build-flow').create()
+module.exports = buildFlow.create()
 	.name('enb-typescript')
 	.target('target', '?.js')
 	.defineOption('tsCompilerOptions')
 	.useFileList(['ts', 'tsx', 'vanilla.js', 'js', 'browser.js', 'jsx'])
 	.builder(function(files) {
 		var compilerOptions = _.merge({}, this._options.tsCompilerOptions, defaultCompilerOptions);
-		var concat = new Concat(true, 'all.js', '\n');
 		var target = this.node.resolvePath(this._target);
 
 		return vow.all(files.map(function(file) {
