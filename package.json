@@ -18,5 +18,18 @@
     "type": "git",
     "url": "git@github.com:NikitaRudenko/enb-typescript.git"
   },
+  "homepage": "https://github.com/NikitaRudenko/enb-typescript",
+  "bugs": {
+    "url": "https://github.com/NikitaRudenko/enb-typescript/issues"
+  },
+  "peerDependencies": {
+    "enb": ">= 0.8.43"
+  },
+  "dependencies": {
+    "typescript": "*",
+    "lodash": "^3.7.0",
+    "vow": "^0.4.9",
+    "vow-fs": "^0.3.4"
+  },
   "license": "MIT"
 }
