@@ -15,17 +15,19 @@ module.exports = buildFlow.create()
 	.useFileList(['ts', 'tsx', 'vanilla.js', 'js', 'browser.js', 'jsx'])
 	.builder(function(files) {
 		var compilerOptions = _.merge({}, this._options.tsCompilerOptions, defaultCompilerOptions);
-		var target = this.node.resolvePath(this._target);
+		var node = this.node;
 
 		return vow.all(files.map(function(file) {
 			return vowFs.read(file.fullname, 'utf-8').then(function(data) {
-				var result = ts.transpileModule(data, {
-						compilerOptions: compilerOptions
-					});
-				return result.outputText;
+				var filename = file.fullname;
+				return '/* begin: ' + filename + ' */\n' + data + '\n/* end: ' + filename + '*/\n';
 			});
 		})).then(function(res) {
-			return res.join('\n');
+			var code = res.join('\n');
+			var result = ts.transpileModule(code, {
+				compilerOptions: compilerOptions
+			});
+			return result.outputText;
 		});
 	})
 	.createTech();
